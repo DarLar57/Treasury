@@ -1,6 +1,10 @@
-<?php include('./common/head.php'); ?>
+<?php 
+include('./common/head.php'); 
+include('initializing.php');
+?>
+
     <div class="header">
-<!-- Navigation bar -->      
+      <!-- Navigation bar -->      
       <ul class="header-ul">
         <li><a href=#home>Home</a></li>
         <li class="dropdown">
@@ -17,12 +21,12 @@
         <p id="sessionTiming"></p>
       </ul>
     </div>
-<!-- Headline with App name -->  
+    <!-- Headline with App name -->  
     <div class="sub-header">
       <h1 id="TL">D ARLAR Treasury Tool</h1>
     </div>
     <div class="main">
-<!-- 3 (will be 4) clicables to Insert, Modify (not ready), Report deals and open Market data -->  
+      <!-- 3 (will be 4) clicables to Insert, Modify (not ready), Report deals and open Market data -->  
       <div class="col-1 col-s-1 menu">
         <ul class="main-ul">
           <li class="click" onclick="add_input()">Deal input</li>
@@ -32,8 +36,9 @@
         </ul>
       </div>
       <div class="col-2 col-s-2">
-<!-- Welcome / short description -->  
-<?php include('./included/welcome.php'); ?> 
+          <!-- Welcome / short description -->  
+          <?php include('./included/text/welcome.php'); ?> 
+
       </div>
       <div class="col-1 col-s-4">
         <div class="aside">
@@ -42,23 +47,24 @@
       </div>
     </div>
     <div class="after-main">
-<!-- Main Container for user's interactions with DB that includes other containers -->    
+    <!-- Main Container for user's interactions with DB that includes other containers -->    
     <div class="col-4 col-s-4" id="Treasury-container">
-        <div class="col-4 col-s-4" style="display: flex; flex-wrap: wrap;">
-<!-- Container #1 part to both Report and Insert  MM and FX to / from  DB -->  
+      <div class="col-4 col-s-4" style="display: flex; flex-wrap: wrap;">
+        <!-- Container #1 part to both Report and Insert  MM and FX to / from  DB -->  
           <div class="col-1 .col-s-1" id="Report_insert">
             <div id="Reporting_1">
               <h2 id="Reporting"></h2>
               <div id="mmfx_instr">
               </div>
                 <h5 id="type_of_tr"></h5>
-<!-- Form (main category selection MM? / FX?) to report from DB -->                     
-                  <form name="myForm" id="myForm" action="reporting.php" method="POST" target="display">
+                  <!-- Form (main category selection MM? / FX?) to report from DB -->                     
+                  <form name="myForm" id="myForm" action="db/reporting.php" method="POST" target="display">
                     <ul>
-<?php include('./included/reporting_options.php'); ?>
+                        <?php include('./included/text/reporting_options.php'); ?>
+
                     </ul>
             </div>
-<!-- Form (exact transation category selection e.g. depo, loan, FX spot etc.) to report MM / FX from DB -->  
+            <!-- Form (exact transation category selection e.g. depo, loan, FX spot etc.) to report MM / FX from DB -->  
             <div id="Reporting_2">
               <h5 id="instrument"></h5>
                 <ul> 
@@ -70,17 +76,17 @@
                     <label for="instr3" id="linstr3" ></label></li><br>
                 </ul>  
             </div>
-<!-- Submission to DB --> 
+            <!-- Submission to DB --> 
             <div id="Reporting_submit">
               <button class="click" type="submit" id="submit" onclick="showReportDisplay()">Submit</button>
                   </form>
             </div>
-<!-- Container #2 part to Insert  MM and FX into DB -->   
+            <!-- Container #2 part to Insert  MM and FX into DB -->   
             <div class="col-4 col-s-4" id="Report_insert2">
               <h2 id="Report_insert2_h2">Deal's Input: </h2>
               <div id="inserting_deals"><h5 id="inserting_deals_h5"></h5>
-<!-- Form (main category selection MM? / FX?) to insert into DB -->        
-                <form name="myForm2" id="myForm2" action="inserting.php" method="POST" target="display">
+              <!-- Form (main category selection MM? / FX?) to insert into DB -->        
+                <form name="myForm2" id="myForm2" action="db/inserting.php" method="POST" target="display">
                     <ul>
                       <li><input type="radio" id="MM2" name="instr5" value="MONEY_MARKET" onclick="add_mm_2()">
                         <label for="MM2" id="lMM2"></label></li>
@@ -90,23 +96,21 @@
                   <div id="Reporting_2_2">  
                     <h5 id="instrument2"></h5>
                   </div>
-<!-- Form (exact transation category selection e.g. depo, loan, FX spot etc.) to insert MM / FX into DB -->  
+                  <!-- Form (exact transation category selection e.g. depo, loan, FX spot etc.) to insert MM / FX into DB -->  
                     <div class="grid_input_selection">
-
                       <div>
                         <label for="INS_O_MM_ID" id="lINS_O_MM_ID" >ID of Instrument:</label>
                       </div>
                       <div>
                         <input type="text" id="ID" name="ID" value="" onclick="" pattern="([0-9]+)|([0-9]+[\.]{1}[0-9]{1,2})">
                       </div>
-
-
                       <div>
                         <label for="INS_O_MM" id="lINS_O_MM" >MM Instrument:</label>
                       </div>
                       <div>
                         <select id="INS_O_MM" name="instr6MM">
-<?php include('./included/mm.php'); ?>
+                            <?php include('./included/text/mm.php'); ?>
+
                         </select>
                       </div> 
                       <div>
@@ -114,7 +118,8 @@
                       </div>
                       <div>
                         <select id="INS_O_FX" name="instr6FX">
-<?php include('./included/fx.php'); ?>
+                            <?php include('./included/text/fx.php'); ?>
+
                         </select>
                       </div>
                       <div>
@@ -122,7 +127,8 @@
                       </div>
                       <div>  
                         <select id="COM_O" name="COMPANY" required>
-<?php include('./included/companies.php'); ?>
+                            <?php include('./included/text/companies.php'); ?>
+
                         </select>
                       </div>
                       <div>
@@ -130,7 +136,8 @@
                       </div>
                       <div>  
                         <select id="BAN_O" name="BANK" required>
-<?php include('./included/banks.php'); ?>
+                            <?php include('./included/text/banks.php'); ?>
+
                         </select>
                       </div>
                       <div>
@@ -146,7 +153,7 @@
                         <input type="date" id="T_Date" name="TRANS_DATE" onclick="">
                       </div>
                     </div>
-<!-- Form continued (specific just for MM transactions -->
+                    <!-- Form continued (specific just for MM transactions -->
                     <div id="mm_addintional_data">
                       <div class="grid_input_selection">  
                         <div>
@@ -176,12 +183,13 @@
                         </div>
                         <div>
                           <select id="Curr" name="NAME_CURRENCY" value="" onclick="">
-<?php include('./included/currencies.php'); ?>                            
+                              <?php include('./included/text/currencies.php'); ?>
+
                           </select> 
                         </div>
                       </div>
                     </div>
-<!-- Form continued (specific just for FX transactions -->
+                    <!-- Form continued (specific just for FX transactions -->
                     <div id="fx_addintional_data">
                       <div class="grid_input_selection">
                         <div>
@@ -193,7 +201,8 @@
                         </div>
                         <div>  
                           <select id="Buy" name="BUY_CURRENCY" value="" onclick="" onchange="check_currency()">
-<?php include('./included/currencies.php'); ?>  
+                              <?php include('./included/text/currencies.php'); ?>
+
                           </select>
                         </div>
                         <div>
@@ -201,7 +210,8 @@
                         </div>
                         <div>
                           <select id="Sell" name="SELL_CURRENCY" value="" onclick="" onchange="check_currency()">
-<?php include('./included/currencies.php'); ?>  
+                              <?php include('./included/text/currencies.php'); ?>
+
                           </select>
                         </div>
                         <div>
@@ -217,7 +227,7 @@
                     </div>
                       <textarea rows="5" cols="30" type="text" id="Comm" name="COMMENT" value="" onclick="" placeholder="Comments, if any..."></textarea>
                   </div>
-<!-- Submission to DB or reseting fields --> 
+                  <!-- Submission to DB or reseting fields --> 
                   <div id="Reporting_submit_2">
                     <button class="click" type="submit" id="submit_2" onclick="showReportDisplay()">Submit</button>
                     <button class="click" type="button" id="submit_reset" onclick="clearInputs()">Reset</button>
@@ -226,26 +236,29 @@
                 </div>
               </div>
             </div>
-<!-- Display of Treasury data from DB -->
+            <!-- Display of Treasury data from DB -->
             <div  class="col-3" id="Report_display">
             <iframe id="display" name="display"></iframe>
           </div>
         </div>
       </div>   
       <div class="col-4 col-s-4">
-<!-- Description of the tool -->
-      <?php include('./included/description.php'); ?>  
+      <!-- Description of the tool -->
+          <?php include('./included/text/description.php'); ?>
+
       </div>
-<!-- Place for Market Data to be displaid -->    
+      <!-- Place for Market Data to be displaid -->    
       <div id="divMarket" class="col-4 col-s-4">   
       </div>
       <div class="col-4 col-s-4">
-<!-- Glossary related to the tool -->
-      <?php include('./included/glossary.php'); ?> 
+          <!-- Glossary related to the tool -->
+          <?php include('./included/text/glossary.php'); ?>
+
       </div>
       <div class="col-4 col-s-4">  
-<!-- About the author -->
-      <?php include('./included/about_me.php'); ?>   
+          <!-- About the author -->
+          <?php include('./included/text/about_me.php'); ?>
+
       </div>
     </div>
 <?php include('./common/footer.php'); ?>    

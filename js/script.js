@@ -108,7 +108,7 @@ function add_input() {
   hideReportDisplay();
   $("#Report_insert2_h2").html("Deal's Input:");
   commonAddInputModify();
-  $("#myForm2").attr("action", "inserting.php");
+  $("#myForm2").attr("action", "/db/inserting.php");
   $("#MM2").attr("onclick", "add_mm_2()");
   $("#FX2").attr("onclick", "add_fx_2()");
 }
@@ -117,7 +117,7 @@ function add_modify() {
   hideReportDisplay();
   $("#Report_insert2_h2").html("Deal's Modification:");
   commonAddInputModify();
-  $("#myForm2").attr("action", "modifying.php");
+  $("#myForm2").attr("action", "/db/modifying.php");
   $("#MM2").attr("onclick", "add_modify_mm_2()");
   $("#FX2").attr("onclick", "add_modify_fx_2()");
   unhideID();
@@ -417,3 +417,12 @@ function check_currency() {
   }
   setInterval(sessionTime, 1000);
 })();
+
+$(document).ready(function(){
+  $("#inputFilter").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#table_report tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});

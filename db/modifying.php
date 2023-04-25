@@ -1,6 +1,15 @@
 <?php
-include('./common/head.php');
-include('./included/db/db.php');
+
+include('../common/head_operations.php');
+include('../initializing.php');
+
+$instrColComp = "";
+$instrColBank = "";
+$instrMMInst = "";
+$instrColCurr = "";
+$instrFXInst = "";
+$instrColSell = "";
+$instrColBuyc = "";
 
 // collect values of input fields
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -57,45 +66,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $s_number_fx = str_repeat("s", $count_modif_col_fx);
 
     // checking by ID if Transaction to be changed exists in DB
+    $err_no_id = "<table>
+        <tr>
+        <td><strong>Transaction</strong> with such <strong>ID</strong> does <strong>not</strong> exist in database !<br><br>
+        Please check proper <strong>ID</strong> through Reporting option!
+        </td>
+        </tr>
+        </table>";
+    
     if ($instrTableMMFX == "MONEY_MARKET") {
         $sql = "SELECT COUNT(*) FROM MONEY_MARKET WHERE ID = ?";
-        $sql_pr = $conn->prepare($sql);
+        $sql_pr = DB::$conn->prepare($sql);
         $sql_pr->bind_param("s", $instrColId);
         $sql_pr->execute();
         $result_mm = $sql_pr->get_result();
         $fieldinfo = $result_mm->fetch_row();
+        
         if ($fieldinfo[0] == 0) {
-            echo "<table>
-            <tr>
-            <td><strong>Transaction</strong> with such <strong>ID</strong> does <strong>not</strong> exist in database !<br><br>
-            Please check proper <strong>ID</strong> through Reporting option!
-            </td>
-            </tr>
-            </table>";
+            echo $err_no_id;
             die ();
         }
+
     } else {
         $sql = "SELECT COUNT(*) FROM FOREIGN_EXCHANGE WHERE ID = ?";
-        $sql_pr = $conn->prepare($sql);
+        $sql_pr = DB::$conn->prepare($sql);
         $sql_pr->bind_param("s", $instrColId);
         $sql_pr->execute();
         $result_mm = $sql_pr->get_result();
         $fieldinfo = $result_mm->fetch_row();
+
         if ($fieldinfo[0] == 0) {
-            echo "<table>
-            <tr>
-            <td><strong>Transaction</strong> with such <strong>ID</strong> does <strong>not</strong> exist in database !<br><br>
-            Please check proper <strong>ID</strong> through Reporting option!
-            </td>
-            </tr>
-            </table>";
+            echo $err_no_id;
             die ();
         }
     }
-} 
+}
+
 switch ($instrTableMMFX) {
     case "MONEY_MARKET":
-// sql statement for MM transactions
+        // sql statement for MM transactions
         $sql = "UPDATE MONEY_MARKET SET " . 
         substr(trim(
         (!empty($instrMMInst) ? "INSTRUMENT_NAME = ?, " : "") . 
@@ -111,46 +120,16 @@ switch ($instrTableMMFX) {
         (!empty($instrColComm) ? "COMMENT = ?, " : "")), 0, -1) .
         " WHERE ID = $instrColId";
 
-        $sql_pr = $conn->prepare($sql);
+        $sql_pr = DB::$conn->prepare($sql);
         $sql_pr->bind_param("$s_number_mm", ...$mm);
-// feedback after input
-        $report = 
-        "<table>
-        <tr>
-          <td>
-          <strong>MM</strong> record modified successfully.<br>
-          </td>
-        </tr>
-        <tr>
-          <td>
-          SQL instruction was submitted.<br>
-          </td>
-        </tr>
-        <tr>
-          <td>
-          <strong>Details:</strong><br>
-          </td>
-        </tr>
-        <tr>
-          <td>
-          <Company: <strong>$instrColComp</strong>
-          Bank: <strong>$instrColBank</strong><br>
-          Instrument: <strong>$instrMMInst</strong><br>
-          Transaction date: <strong>$instrColTran</strong><br>
-          Start date: <strong>$instrColStar</strong><br>
-          End date: <strong>$instrColEndd</strong><br>
-          Amount: <strong>$instrColAmou</strong><br>
-          Currency: <strong>$instrColCurr</strong><br>
-          Interest rate: <strong>$instrColBase</strong><br>
-          Margin: <strong>$instrColMarg</strong><br>
-          Comment: <strong>$instrColComm</strong><br>
-          </td>
-        </tr>
-        </table>";
+        // feedback after input
+       
+        include('../included/text/modyfying_mm-report.php');
+        
     break;
     case "FOREIGN_EXCHANGE": 
-// sql statement for FX transactions
-        
+
+// sql statement for FX transactions      
 $sql = "UPDATE FOREIGN_EXCHANGE SET " . 
         substr(trim(
         (!empty($instrColTran) ? "TRANS_DATE = ?, " : "") . 
@@ -165,47 +144,18 @@ $sql = "UPDATE FOREIGN_EXCHANGE SET " .
         (!empty($instrColExch) ? "EXCHANGE_RATE = ?, " : "")), 0, -1) .
         " WHERE ID = $instrColId";
        
-        $sql_pr = $conn->prepare($sql);
+        $sql_pr = DB::$conn->prepare($sql);
         $sql_pr->bind_param("$s_number_fx", ...$fx);
-// feedback after input
-        $report = 
-        "<table>
-        <tr>
-          <td>
-          <strong>FX</strong> record modified successfully.<br>
-          </td>
-        </tr>
-        <tr>
-          <td>
-          SQL instruction was submitted.<br>
-          </td>
-        </tr>
-        <tr>
-          <td>
-          <strong>Details:</strong><br>
-          </td>
-        </tr>
-        <tr>
-          <td>
-          Company: <strong>$instrColComp</strong><br>
-          Bank: <strong>$instrColBank</strong><br>
-          Instrument: <strong>$instrFXInst</strong><br>
-          Transaction date: <strong>$instrColTran</strong><br>
-          Settlement date: <strong>$instrColSett</strong><br>
-          Amount: <strong>$instrColAmou</strong><br>
-          Currency bought: <strong>$instrColBuyc</strong><br>
-          Currency sold: <strong>$instrColSell</strong><br>
-          Exchange rate: <strong>$instrColExch</strong><br>
-          Comment: <strong>$instrColComm</strong><br>
-          </td>
-        </tr>
-        </table>";
+        // feedback after input
+        
+        include('../included/text/modyfying_fx-report.php');
+        
     break;
 }
 if ($sql_pr->execute()) {
     echo $report;
-} 
-else echo "Error: <br>";
+} else {echo "Error: <br>";
+  }
 
-$conn->close();
+  DB::$conn->close();
 ?>
