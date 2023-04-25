@@ -1,5 +1,10 @@
 <?php
 
+namespace Classes;
+
+use mysqli;
+use Exception;
+
 class Db
 {
     public static $conn;

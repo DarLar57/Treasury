@@ -1,5 +1,10 @@
 <?php
 
+namespace Classes;
+
+use Classes\DbOperations\DbOperations;
+use Classes\Db;
+
 class Controller
 {
     public function getReport(): void
@@ -8,6 +13,8 @@ class Controller
         global $instr2; 
         global $instr3; 
         global $instr4;
+        global $table; 
+        global $where;
         $j = 1;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -102,21 +109,20 @@ class Controller
 
     function checkErr($table): void
     {
-        function customError($errno, $errstr): void
+        //set error handler
+        set_error_handler(function ($errno, $errstr): void
         {
             echo "<b>Error:</b> [$errno] <br><br>$errstr<br>";
             echo "Script was ended";
             die();
-        }
+        }, E_USER_WARNING);
         
-        //set error handler
-        set_error_handler("customError", E_USER_WARNING);
         //trigger error
         if (!isset($table)) {
             trigger_error("<b>Ups</b>...Something went wrong, most likely <b>selection<b> is missing.<br><br><b>Please check</b>.</br>",E_USER_WARNING);
         }
     }
-    public function insertDeal()
+    public function insertDeal(): void
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // collect values of input fields
@@ -169,7 +175,7 @@ class Controller
         Db::$conn->close();
     }
 
-    public function modifyDeal() 
+    public function modifyDeal(): void
     {
         $instrColComp = "";
         $instrColBank = "";
@@ -238,7 +244,7 @@ class Controller
         
             // checking by ID if Transaction to be changed exists in Db
             $errNoId = "<table><tr>
-                <td><strong>Transaction</strong> with such <strong>ID</strong> does <strong>not</strong>exist in database !<br><br>
+                <td><strong>Transaction</strong> with such <strong>ID</strong> does <strong>not </strong>exist in database !<br><br>
                 Please check proper <strong>ID</strong> through Reporting option!
                 </td></tr>
                 </table>";

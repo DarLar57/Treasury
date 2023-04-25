@@ -1,6 +1,6 @@
 <?php 
 include('./treasury/common/head.php'); 
-include('initializing.php');
+include('treasury/initializing.php');
 ?>
 
     <div class="header">
@@ -42,7 +42,7 @@ include('initializing.php');
       </div>
       <div class="col-1 col-s-4">
         <div class="aside">
-          <img src="photos/currencies.jpg" /> 
+          <img src="treasury/photos/currencies.jpg" /> 
         </div>
       </div>
     </div>
@@ -58,7 +58,7 @@ include('initializing.php');
               </div>
                 <h5 id="type_of_tr"></h5>
                   <!-- Form (main category selection MM? / FX?) to report from DB -->                     
-                  <form name="myForm" id="myForm" action="/treasury/classes/reporting.php" method="POST" target="display">
+                  <form name="myForm" id="myForm" action="/treasury/common/display.php" method="POST" target="display">
                     <ul>
                         <?php include('./treasury/included/text/reporting_options.php'); ?>
 
@@ -86,7 +86,9 @@ include('initializing.php');
               <h2 id="Report_insert2_h2">Deal's Input: </h2>
               <div id="inserting_deals"><h5 id="inserting_deals_h5"></h5>
               <!-- Form (main category selection MM? / FX?) to insert into DB -->        
-                <form name="myForm2" id="myForm2" action="treasury/classes/inserting.php" method="POST" target="display">
+                <form name="myForm2" id="myForm2" action="treasury/common/display.php" method="POST" target="display">
+                <input type="hidden" id="ModifyOrInsert" name="ModifyOrInsert" value="">
+                
                     <ul>
                       <li><input type="radio" id="MM2" name="instr5" value="MONEY_MARKET" onclick="add_mm_2()">
                         <label for="MM2" id="lMM2"></label></li>

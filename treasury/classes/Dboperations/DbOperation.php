@@ -1,5 +1,9 @@
 <?php
 
+namespace Classes\DbOperations;
+
+use Classes\Db;
+
 class DbOperations extends Db
 {
     public static $conn;

@@ -1,0 +1,12 @@
+{
+    "name": "treasury/treasury",
+    "description": "Treasury Tool",
+    "authors": [
+        {
+            "name": "Dariusz Larsen"
+        }
+    ],
+    "autoload": {
+        "classmap": ["treasury/classes", "treasury/classes/Dboperations"]
+    }
+}

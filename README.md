@@ -1,5 +1,5 @@
 # Treasury
 
 Treasury_Tool
-First project using PHP, JS, jQ, SQL, CSS, HTML
+First project using PHP_OOP, JS, jQ, SQL, CSS, HTML
 To be enhanced / under development

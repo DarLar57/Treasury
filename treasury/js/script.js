@@ -108,16 +108,15 @@ function add_input() {
   hideReportDisplay();
   $("#Report_insert2_h2").html("Deal's Input:");
   commonAddInputModify();
-  $("#myForm2").attr("action", "/treasury/classes/inserting.php");
   $("#MM2").attr("onclick", "add_mm_2()");
   $("#FX2").attr("onclick", "add_fx_2()");
+  $("#ModifyOrInsert").val("Insert");
 }
 // Modify Deals display
 function add_modify() {
   hideReportDisplay();
   $("#Report_insert2_h2").html("Deal's Modification:");
   commonAddInputModify();
-  $("#myForm2").attr("action", "/treasury/classes/modifying.php");
   $("#MM2").attr("onclick", "add_modify_mm_2()");
   $("#FX2").attr("onclick", "add_modify_fx_2()");
   unhideID();
@@ -132,6 +131,7 @@ function add_modify() {
   $("#Sell").prop("required", false);
   $("#Exchange").prop("required", false);
   clearInputs();
+  $("#ModifyOrInsert").val("Modify");
 }
 // Modify Deals (MM) display
 function add_modify_mm_2() {
