@@ -1,5 +1,5 @@
 <?php 
-include('./common/head.php'); 
+include('./treasury/common/head.php'); 
 include('initializing.php');
 ?>
 
@@ -37,7 +37,7 @@ include('initializing.php');
       </div>
       <div class="col-2 col-s-2">
           <!-- Welcome / short description -->  
-          <?php include('./included/text/welcome.php'); ?> 
+          <?php include('./treasury/included/text/welcome.php'); ?> 
 
       </div>
       <div class="col-1 col-s-4">
@@ -58,9 +58,9 @@ include('initializing.php');
               </div>
                 <h5 id="type_of_tr"></h5>
                   <!-- Form (main category selection MM? / FX?) to report from DB -->                     
-                  <form name="myForm" id="myForm" action="db/reporting.php" method="POST" target="display">
+                  <form name="myForm" id="myForm" action="/treasury/classes/reporting.php" method="POST" target="display">
                     <ul>
-                        <?php include('./included/text/reporting_options.php'); ?>
+                        <?php include('./treasury/included/text/reporting_options.php'); ?>
 
                     </ul>
             </div>
@@ -86,7 +86,7 @@ include('initializing.php');
               <h2 id="Report_insert2_h2">Deal's Input: </h2>
               <div id="inserting_deals"><h5 id="inserting_deals_h5"></h5>
               <!-- Form (main category selection MM? / FX?) to insert into DB -->        
-                <form name="myForm2" id="myForm2" action="db/inserting.php" method="POST" target="display">
+                <form name="myForm2" id="myForm2" action="treasury/classes/inserting.php" method="POST" target="display">
                     <ul>
                       <li><input type="radio" id="MM2" name="instr5" value="MONEY_MARKET" onclick="add_mm_2()">
                         <label for="MM2" id="lMM2"></label></li>
@@ -109,7 +109,7 @@ include('initializing.php');
                       </div>
                       <div>
                         <select id="INS_O_MM" name="instr6MM">
-                            <?php include('./included/text/mm.php'); ?>
+                            <?php include('./treasury/included/text/mm.php'); ?>
 
                         </select>
                       </div> 
@@ -118,7 +118,7 @@ include('initializing.php');
                       </div>
                       <div>
                         <select id="INS_O_FX" name="instr6FX">
-                            <?php include('./included/text/fx.php'); ?>
+                            <?php include('./treasury/included/text/fx.php'); ?>
 
                         </select>
                       </div>
@@ -127,7 +127,7 @@ include('initializing.php');
                       </div>
                       <div>  
                         <select id="COM_O" name="COMPANY" required>
-                            <?php include('./included/text/companies.php'); ?>
+                            <?php include('./treasury/included/text/companies.php'); ?>
 
                         </select>
                       </div>
@@ -136,7 +136,7 @@ include('initializing.php');
                       </div>
                       <div>  
                         <select id="BAN_O" name="BANK" required>
-                            <?php include('./included/text/banks.php'); ?>
+                            <?php include('./treasury/included/text/banks.php'); ?>
 
                         </select>
                       </div>
@@ -144,7 +144,7 @@ include('initializing.php');
                         <label for="Amount" id="lAmount" >Amount:</label>
                       </div>
                       <div>
-                        <input type="text" id="Amount" name="AMOUNT" value="" onclick="" pattern="([1-9][0-9]+)|([0-9]+[\.]{1}[0-9]{1,2})|([\.]{1}[0-9]{1,})"  required>
+                        <input type="text" id="Amount" name="AMOUNT" value="" onclick="" pattern="([1-9]+)|([1-9][0-9]+)|([0-9]+[\.]{1}[0-9]{1,2})|([\.]{1}[0-9]{1,})"  required>
                       </div>
                       <div>
                         <label for="T_Date" id="lTdate">Transaction date:</label>
@@ -183,7 +183,7 @@ include('initializing.php');
                         </div>
                         <div>
                           <select id="Curr" name="NAME_CURRENCY" value="" onclick="">
-                              <?php include('./included/text/currencies.php'); ?>
+                              <?php include('./treasury/included/text/currencies.php'); ?>
 
                           </select> 
                         </div>
@@ -201,7 +201,7 @@ include('initializing.php');
                         </div>
                         <div>  
                           <select id="Buy" name="BUY_CURRENCY" value="" onclick="" onchange="check_currency()">
-                              <?php include('./included/text/currencies.php'); ?>
+                              <?php include('./treasury/included/text/currencies.php'); ?>
 
                           </select>
                         </div>
@@ -210,7 +210,7 @@ include('initializing.php');
                         </div>
                         <div>
                           <select id="Sell" name="SELL_CURRENCY" value="" onclick="" onchange="check_currency()">
-                              <?php include('./included/text/currencies.php'); ?>
+                              <?php include('./treasury/included/text/currencies.php'); ?>
 
                           </select>
                         </div>
@@ -244,7 +244,7 @@ include('initializing.php');
       </div>   
       <div class="col-4 col-s-4">
       <!-- Description of the tool -->
-          <?php include('./included/text/description.php'); ?>
+          <?php include('./treasury/included/text/description.php'); ?>
 
       </div>
       <!-- Place for Market Data to be displaid -->    
@@ -252,14 +252,14 @@ include('initializing.php');
       </div>
       <div class="col-4 col-s-4">
           <!-- Glossary related to the tool -->
-          <?php include('./included/text/glossary.php'); ?>
+          <?php include('./treasury/included/text/glossary.php'); ?>
 
       </div>
       <div class="col-4 col-s-4">  
           <!-- About the author -->
-          <?php include('./included/text/about_me.php'); ?>
+          <?php include('./treasury/included/text/about_me.php'); ?>
 
       </div>
     </div>
-<?php include('./common/footer.php'); ?>    
+<?php include('./treasury/common/footer.php'); ?>    
     

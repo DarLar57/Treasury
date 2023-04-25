@@ -1,9 +1,9 @@
 <?php
 
-include('db/DB.php');
-include('db/DbOperation.php');
-include('db/Controller.php');
+include('treasury/classes/Db.php');
+include('treasury/classes/DbOperation.php');
+include('treasury/classes/Controller.php');
 
-new DB;
+new Db;
 $dbOper = new DbOperations;
 $controller = new Controller;

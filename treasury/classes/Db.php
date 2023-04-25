@@ -1,6 +1,6 @@
 <?php
 
-class DB
+class Db
 {
     public static $conn;
     public const DB_HO = "localhost";

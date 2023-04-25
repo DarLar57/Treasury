@@ -108,7 +108,7 @@ function add_input() {
   hideReportDisplay();
   $("#Report_insert2_h2").html("Deal's Input:");
   commonAddInputModify();
-  $("#myForm2").attr("action", "/db/inserting.php");
+  $("#myForm2").attr("action", "/treasury/classes/inserting.php");
   $("#MM2").attr("onclick", "add_mm_2()");
   $("#FX2").attr("onclick", "add_fx_2()");
 }
@@ -117,7 +117,7 @@ function add_modify() {
   hideReportDisplay();
   $("#Report_insert2_h2").html("Deal's Modification:");
   commonAddInputModify();
-  $("#myForm2").attr("action", "/db/modifying.php");
+  $("#myForm2").attr("action", "/treasury/classes/modifying.php");
   $("#MM2").attr("onclick", "add_modify_mm_2()");
   $("#FX2").attr("onclick", "add_modify_fx_2()");
   unhideID();
