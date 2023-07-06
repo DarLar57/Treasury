@@ -7,5 +7,5 @@
     transactions etc. It provides also for reporting of concluded
     deals. The application is scalable and planned to be enriched
     in time. The IT langages used in coding are HTML,
-    CSS, JS with jQ, PHP (OOP) and SQL. 
+    CSS, JS with jQ, PHP and SQL. Project is coded using OOP and MVC, no use of Back-End framework and dynamic communication with database.
   </h4>

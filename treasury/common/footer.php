@@ -3,6 +3,7 @@
       <h5 id="contact">Contact info</h5>
     </div>
     <div>
+    <img class="logo" src="treasury/photos/ITCoding_logo_6.png"></img><br>
       <svg class="svg" viewBox="0 0 384 512" data-fa-i2><path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>
       Sarmacka xx/xx, 02-972 Warsaw
     </div>

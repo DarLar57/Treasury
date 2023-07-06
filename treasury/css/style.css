@@ -507,6 +507,13 @@ select:valid {
   width: 100%;
   padding: 15px;
 }
+.logo {
+  max-width: 7em;
+  padding: 0;
+}
+#contact {
+  text-shadow: 4px 4px 4px blue, 4px 4px 4px white;
+}
 @media only screen and (min-width: 1024px) {
   /* For tablets: */
   h3 {
